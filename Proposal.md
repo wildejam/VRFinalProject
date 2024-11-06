@@ -27,4 +27,4 @@ The goal will be to grab and deliver as many objects as possible using these con
 
 ## Inspirations
 - **Pierhead Arcade 2** -- https://store.steampowered.com/app/572620/Pierhead_Arcade_2/ -- Huge inspiration for the arcade aesthetic, as well as some basic VR fundamentals!
-- **Duck Steason** -- https://store.steampowered.com/app/503580/Duck_Season/ -- Inspiration for the idea of placing the player inside of the game, with the idea that they are being controlled by someone else.
+- **Duck Season** -- https://store.steampowered.com/app/503580/Duck_Season/ -- Inspiration for the idea of placing the player inside of the game, with the idea that they are being controlled by someone else.
