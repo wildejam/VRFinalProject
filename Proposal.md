@@ -1,5 +1,6 @@
 # Final Project Proposal: XR Arcade
 Clawston: Wielder of the Claw
+
 Jamison Wilder
 
 ## Project Description
