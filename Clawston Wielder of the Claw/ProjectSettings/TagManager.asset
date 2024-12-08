@@ -3,12 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Toy
+  - GoldToy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Claw
   - Water
   - UI
   - 

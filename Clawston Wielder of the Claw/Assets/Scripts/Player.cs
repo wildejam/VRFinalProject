@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public InputActionReference button;
     public float dropRaiseTime = 2.0f;
     public float dropRaiseDistance = 30.0f;
+    public AudioSource dropRaiseSFX;
 
     // Boundaries of claw machine walls
     [SerializeField]
@@ -43,6 +44,8 @@ public class Player : MonoBehaviour
             verticalMovementTimer = 0;
             verticalMovementStartPos = transform.position;
             verticalMovementEndPos = new Vector3(transform.position.x, transform.position.y - dropRaiseDistance, transform.position.z);
+            dropRaiseSFX.loop = true;
+            dropRaiseSFX.Play();
             return;
         }
         else if (verticalMovementState == "lowered")
@@ -51,7 +54,8 @@ public class Player : MonoBehaviour
             verticalMovementTimer = 0;
             verticalMovementStartPos = transform.position;
             verticalMovementEndPos = new Vector3(transform.position.x, transform.position.y + dropRaiseDistance, transform.position.z);
-
+            dropRaiseSFX.loop = true;
+            dropRaiseSFX.Play();
             return;
         }
         else
@@ -99,10 +103,12 @@ public class Player : MonoBehaviour
                     case "raising":
                         verticalMovementState = "raised";
                         verticalMovementTimer = 0;
+                        dropRaiseSFX.loop = false;
                         break;
                     case "lowering":
                         verticalMovementState = "lowered";
                         verticalMovementTimer = 0;
+                        dropRaiseSFX.loop = false;
                         break;
                 }
             }
