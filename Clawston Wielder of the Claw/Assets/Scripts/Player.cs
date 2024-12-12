@@ -22,9 +22,13 @@ public class Player : MonoBehaviour
     private float zLowerBoundary = -45;
     [SerializeField]
     private float zUpperBoundary = 45;
+    [SerializeField]
+    private GameObject leftGrabberObj;
+    [SerializeField]
+    private GameObject rightGrabberObj;
 
     // possible states are "raised", "lowered", "raising", and "lowering"
-    private string verticalMovementState = "raised";
+    public string verticalMovementState = "raised";
     // value used to store the ratio between start and end time for vertical movement, for use in lerp
     private float verticalMovementTimer = 0;
     private Vector3 verticalMovementStartPos;
@@ -50,6 +54,19 @@ public class Player : MonoBehaviour
         }
         else if (verticalMovementState == "lowered")
         {
+            rightGrabberCollider leftGrabberScript = leftGrabberObj.GetComponent<rightGrabberCollider>();
+            rightGrabberCollider rightGrabberScript = rightGrabberObj.GetComponent<rightGrabberCollider>();
+            for (int i = 0; i < rightGrabberScript.grabbedObjects.Count; i++)
+            {
+                rightGrabberScript.grabbedObjects[i].gameObject.transform.parent = transform;
+                rightGrabberScript.grabbedObjects[i].gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            }
+            for (int i = 0; i < leftGrabberScript.grabbedObjects.Count; i++)
+            {
+                leftGrabberScript.grabbedObjects[i].gameObject.transform.parent = transform;
+                leftGrabberScript.grabbedObjects[i].gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            }
+
             verticalMovementState = "raising";
             verticalMovementTimer = 0;
             verticalMovementStartPos = transform.position;
@@ -91,7 +108,6 @@ public class Player : MonoBehaviour
             // User lerp to determine the position of the player across the movement time
             if (verticalMovementTimer < dropRaiseTime)
             {
-                Debug.Log(verticalMovementTimer);
                 transform.position = Vector3.Lerp(verticalMovementStartPos, verticalMovementEndPos, verticalMovementTimer / dropRaiseTime);
                 verticalMovementTimer += Time.deltaTime;
             }
@@ -101,6 +117,20 @@ public class Player : MonoBehaviour
                 switch(verticalMovementState)
                 {
                     case "raising":
+                        rightGrabberCollider leftGrabberScript = leftGrabberObj.GetComponent<rightGrabberCollider>();
+                        rightGrabberCollider rightGrabberScript = rightGrabberObj.GetComponent<rightGrabberCollider>();
+                        for (int i = 0; i < rightGrabberScript.grabbedObjects.Count; i++)
+                        {
+                            rightGrabberScript.grabbedObjects[i].gameObject.transform.parent = transform.root;
+                            rightGrabberScript.grabbedObjects[i].gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                        }
+                        for (int i = 0; i < leftGrabberScript.grabbedObjects.Count; i++)
+                        {
+                            leftGrabberScript.grabbedObjects[i].gameObject.transform.parent = transform.root;
+                            leftGrabberScript.grabbedObjects[i].gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                        }
+
+
                         verticalMovementState = "raised";
                         verticalMovementTimer = 0;
                         dropRaiseSFX.loop = false;
