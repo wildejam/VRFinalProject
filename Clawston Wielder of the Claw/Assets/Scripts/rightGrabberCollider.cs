@@ -22,9 +22,4 @@ public class rightGrabberCollider : MonoBehaviour
         }
       
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        grabbedObjects.Remove(other.gameObject);
-    }
 }

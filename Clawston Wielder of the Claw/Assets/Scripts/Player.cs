@@ -129,6 +129,8 @@ public class Player : MonoBehaviour
                             leftGrabberScript.grabbedObjects[i].gameObject.transform.parent = transform.root;
                             leftGrabberScript.grabbedObjects[i].gameObject.GetComponent<Rigidbody>().isKinematic = false;
                         }
+                        rightGrabberScript.grabbedObjects.Clear();
+                        leftGrabberScript.grabbedObjects.Clear();
 
 
                         verticalMovementState = "raised";

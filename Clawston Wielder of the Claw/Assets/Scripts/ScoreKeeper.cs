@@ -11,13 +11,13 @@ public class ScoreKeeper : MonoBehaviour
     {
         if (other.gameObject.tag == "Toy") {
             gameManager.score += 1;
-            Destroy(other.gameObject);
+            other.gameObject.transform.position = new Vector3(0, -1000, 0);
             pointSound.Play();
         }
         else if (other.gameObject.tag == "GoldToy")
         {
             gameManager.score += 5;
-            Destroy(other.gameObject);
+            other.gameObject.transform.position = new Vector3(0, -1000, 0);
             pointSound.Play();
         }
     }

@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         scoreText = scoreTextObj.GetComponent<TextMeshPro>();
         timeText = timeTextObj.GetComponent<TextMeshPro>();
         instructionsText = instructionsTextObj.GetComponent<TextMeshPro>();
@@ -55,6 +56,8 @@ public class GameManager : MonoBehaviour
 
         if (time <= 0)
         {
+            Time.timeScale = 0;
+            time = 0;
             instructionsText.text = "Time's Up!\n Score: " + scoreText.text + "\n Press both triggers to restart";
         }
     }
